@@ -53,6 +53,14 @@ def main():
     cursor.execute(sql_create_table_products)
     cursor.execute(sql_create_table_transactions)
 
+    sql_create_index_accounts = "CREATE INDEX accounts_idx ON accounts(zip_code)"
+    sql_create_index_products = "CREATE INDEX product_code_idx ON products(product_code)"
+    sql_create_index_transactions = "CREATE INDEX transactions_idx ON transactions(transaction_date)"
+
+    cursor.execute(sql_create_index_accounts)
+    cursor.execute(sql_create_index_products)
+    cursor.execute(sql_create_index_transactions)
+
     with open('/app/data/accounts.csv', 'r') as f:
         next(f)
         data = f.read().replace(", ", ",")
